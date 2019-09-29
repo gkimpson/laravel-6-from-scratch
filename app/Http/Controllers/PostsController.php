@@ -3,14 +3,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 
 class PostsController
 {
-    public function show($slug) {
-        $post = \DB::table('posts')->where('slug', $slug)->first();
-
+    public function show($slug)
+    {
         return view('post', [
-            'post' => $post
+            'post' => Post::where('slug', $slug)->firstOrFail()
         ]);
     }
 }
